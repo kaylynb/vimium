@@ -198,6 +198,7 @@ Commands =
       "removeTab",
       "restoreTab",
       "moveTabToNewWindow",
+      "moveAllTabsToNewWindows",
       "closeTabsOnLeft","closeTabsOnRight",
       "closeOtherTabs",
       "moveTabLeft",
@@ -213,6 +214,7 @@ Commands =
     "scrollToLeft",
     "scrollToRight",
     "moveTabToNewWindow",
+    "moveAllTabsToNewWindows",
     "goUp",
     "goToRoot",
     "LinkHints.activateModeWithQueue",
@@ -389,6 +391,7 @@ commandDescriptions =
   restoreTab: ["Restore closed tab", { background: true, repeatLimit: 20 }]
 
   moveTabToNewWindow: ["Move tab to new window", { background: true }]
+  moveAllTabsToNewWindows: ["Move all tabs to new windows", { background: true}]
   togglePinTab: ["Pin or unpin current tab", { background: true }]
   toggleMuteTab: ["Mute or unmute current tab", { background: true, noRepeat: true }]
 

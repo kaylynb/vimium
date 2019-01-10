@@ -214,6 +214,12 @@ BackgroundCommands =
       [ tab, tabs... ] = tabs[startTabIndex...startTabIndex + count]
       chrome.windows.create {tabId: tab.id, incognito: tab.incognito}, (window) ->
         chrome.tabs.move (tab.id for tab in tabs), {windowId: window.id, index: -1}
+  moveAllTabsToNewWindows: () ->
+    moveTab = (tab) ->
+      chrome.windows.create {tabId: tab.id, incognito: tab.incognito}, (window) ->
+        chrome.tabs.move tab.id, {windowId: window.id, index: -1}
+    chrome.tabs.query {currentWindow: true, pinned: false}, (tabs) ->
+      moveTab tab for tab in tabs
   nextTab: (request) -> selectTab "next", request
   previousTab: (request) -> selectTab "previous", request
   firstTab: (request) -> selectTab "first", request
