@@ -121,8 +121,6 @@ TabOperations =
   openUrlInNewWindow: (request, callback = (->)) ->
     winConfig =
       url: Utils.convertToUrl request.url
-      active: true
-    winConfig.active = request.active if request.active?
     # Firefox does not support "about:newtab" in chrome.tabs.create.
     delete winConfig["url"] if winConfig["url"] == Settings.defaults.newTabUrl
     chrome.windows.create winConfig, callback

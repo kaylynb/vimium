@@ -202,6 +202,7 @@ if LinkHints?
     "LinkHints.activateMode": LinkHints.activateMode.bind LinkHints
     "LinkHints.activateModeToOpenInNewTab": LinkHints.activateModeToOpenInNewTab.bind LinkHints
     "LinkHints.activateModeToOpenInNewForegroundTab": LinkHints.activateModeToOpenInNewForegroundTab.bind LinkHints
+    "LinkHints.activateModeToOpenInNewWindow": LinkHints.activateModeToOpenInNewWindow.bind LinkHints
     "LinkHints.activateModeWithQueue": LinkHints.activateModeWithQueue.bind LinkHints
     "LinkHints.activateModeToOpenIncognito": LinkHints.activateModeToOpenIncognito.bind LinkHints
     "LinkHints.activateModeToDownloadLink": LinkHints.activateModeToDownloadLink.bind LinkHints

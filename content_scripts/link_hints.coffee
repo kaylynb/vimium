@@ -22,6 +22,10 @@ OPEN_IN_NEW_FG_TAB =
   name: "fg-tab"
   indicator: "Open link in new tab and switch to it"
   clickModifiers: shiftKey: true, metaKey: isMac, ctrlKey: not isMac
+OPEN_IN_NEW_WINDOW =
+  name: "window"
+  indicator: "Open link in new window"
+  clickModifiers: shiftKey: true, metaKey: false, ctrlKey: false, altKey: false
 OPEN_WITH_QUEUE =
   name: "queue"
   indicator: "Open multiple links in new tabs"
@@ -47,7 +51,7 @@ DOWNLOAD_LINK_URL =
   indicator: "Download link URL"
   clickModifiers: altKey: true, ctrlKey: false, metaKey: false
 
-availableModes = [OPEN_IN_CURRENT_TAB, OPEN_IN_NEW_BG_TAB, OPEN_IN_NEW_FG_TAB, OPEN_WITH_QUEUE, COPY_LINK_URL,
+availableModes = [OPEN_IN_CURRENT_TAB, OPEN_IN_NEW_BG_TAB, OPEN_IN_NEW_FG_TAB, OPEN_WITH_QUEUE, OPEN_IN_NEW_WINDOW, COPY_LINK_URL,
   OPEN_INCOGNITO, DOWNLOAD_LINK_URL]
 
 HintCoordinator =
@@ -136,6 +140,7 @@ LinkHints =
 
   activateModeToOpenInNewTab: (count) -> @activateMode count, mode: OPEN_IN_NEW_BG_TAB
   activateModeToOpenInNewForegroundTab: (count) -> @activateMode count, mode: OPEN_IN_NEW_FG_TAB
+  activateModeToOpenInNewWindow: (count) -> @activateMode count, mode: OPEN_IN_NEW_WINDOW
   activateModeToCopyLinkUrl: (count) -> @activateMode count, mode: COPY_LINK_URL
   activateModeWithQueue: -> @activateMode 1, mode: OPEN_WITH_QUEUE
   activateModeToOpenIncognito: (count) -> @activateMode count, mode: OPEN_INCOGNITO

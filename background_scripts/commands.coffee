@@ -163,6 +163,7 @@ Commands =
       "LinkHints.activateMode",
       "LinkHints.activateModeToOpenInNewTab",
       "LinkHints.activateModeToOpenInNewForegroundTab",
+      "LinkHints.activateModeToOpenInNewWindow",
       "LinkHints.activateModeWithQueue",
       "LinkHints.activateModeToDownloadLink",
       "LinkHints.activateModeToOpenIncognito",
@@ -218,6 +219,7 @@ Commands =
     "LinkHints.activateModeToDownloadLink",
     "Vomnibar.activateEditUrl",
     "Vomnibar.activateEditUrlInNewTab",
+    "LinkHints.activateModeToOpenInNewWindow",
     "LinkHints.activateModeToOpenIncognito",
     "LinkHints.activateModeToCopyLinkUrl",
     "goNext",
@@ -353,6 +355,7 @@ commandDescriptions =
   "LinkHints.activateMode": ["Open a link in the current tab"]
   "LinkHints.activateModeToOpenInNewTab": ["Open a link in a new tab"]
   "LinkHints.activateModeToOpenInNewForegroundTab": ["Open a link in a new tab & switch to it"]
+  "LinkHints.activateModeToOpenInNewWindow": ["Open a link in a new window"]
   "LinkHints.activateModeWithQueue": ["Open multiple links in a new tab", { noRepeat: true }]
   "LinkHints.activateModeToOpenIncognito": ["Open a link in incognito window"]
   "LinkHints.activateModeToDownloadLink": ["Download link url"]
