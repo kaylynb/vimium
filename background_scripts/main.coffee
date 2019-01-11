@@ -165,6 +165,13 @@ moveTab = ({count, tab, registryEntry}) ->
     chrome.tabs.move tab.id,
       index: Math.max minIndex, Math.min maxIndex, tab.index + count
 
+moveTabsCount = (mover) -> ({count, tab}) ->
+  chrome.tabs.query {currentWindow: true}, (tabs) ->
+    activeTabIndex = tab.index
+    startTabIndex = Math.max 0, Math.min activeTabIndex, tabs.length - count
+    tabs = tabs[startTabIndex...startTabIndex + count]
+    mover tabs
+
 mkRepeatCommand = (command) -> (request) ->
   if 0 < request.count--
     command request, (request) -> (mkRepeatCommand command) request
@@ -207,19 +214,13 @@ BackgroundCommands =
           callback request
   duplicateTab: mkRepeatCommand (request, callback) ->
     chrome.tabs.duplicate request.tabId, (tab) -> callback extend request, {tab, tabId: tab.id}
-  moveTabToNewWindow: ({count, tab}) ->
-    chrome.tabs.query {currentWindow: true}, (tabs) ->
-      activeTabIndex = tab.index
-      startTabIndex = Math.max 0, Math.min activeTabIndex, tabs.length - count
-      [ tab, tabs... ] = tabs[startTabIndex...startTabIndex + count]
-      chrome.windows.create {tabId: tab.id, incognito: tab.incognito}, (window) ->
-        chrome.tabs.move (tab.id for tab in tabs), {windowId: window.id, index: -1}
-  moveAllTabsToNewWindows: () ->
-    moveTab = (tab) ->
-      chrome.windows.create {tabId: tab.id, incognito: tab.incognito}, (window) ->
-        chrome.tabs.move tab.id, {windowId: window.id, index: -1}
-    chrome.tabs.query {currentWindow: true, pinned: false}, (tabs) ->
-      moveTab tab for tab in tabs
+
+  moveTabToNewWindow: moveTabsCount (tabs) ->
+    [ tab, tabs... ] = tabs
+    chrome.windows.create {tabId: tab.id, incognito: tab.incognito}, (window) ->
+      chrome.tabs.move (tab.id for tab in tabs), {windowId: window.id, index: -1}
+  moveTabToDistinctWindow: moveTabsCount (tabs) ->
+    chrome.windows.create {tabId: tab.id, incognito: tab.incognito} for tab in tabs
   nextTab: (request) -> selectTab "next", request
   previousTab: (request) -> selectTab "previous", request
   firstTab: (request) -> selectTab "first", request
